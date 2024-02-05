@@ -5,6 +5,8 @@ import django
 django.setup()
 from rango.models import Category, Page
 
+import random
+
 def populate():
     python_pages = [
             {'title': 'Official Python Tutorial',
@@ -40,7 +42,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data['views'], cat_data['likes'])
         for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'])
+            add_page(c, p['title'], p['url'], random.randint(1,100))
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
